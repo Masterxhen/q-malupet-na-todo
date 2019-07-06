@@ -4,19 +4,19 @@
 :one: 
 ```
 git clone https://github.com/Masterxhen/q-malupet-na-todo.git
-or Download Zip then
+or Download Zip
 ```
 
 
 ### Installation
 :two:
 ```
-For those who downloaded the file, Unzip first then
+For those who downloaded the file, Unzip first
 ```
 :three:
 ```
-cd q-malupet-na-todo or 
-open folder and hold shift and open command/PowerShell window here then
+cd q-malupet-na-todo-master
+or open folder and hold shift and open command/PowerShell window here
 ```
 :four: 
 ```
