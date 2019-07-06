@@ -3,7 +3,8 @@
 ### Project setup
 :one: 
 ```
-git clone https://github.com/Masterxhen/q-malupet-na-todo.git or Download Zip then
+git clone https://github.com/Masterxhen/q-malupet-na-todo.git
+or Download Zip then
 ```
 
 
