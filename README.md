@@ -14,7 +14,8 @@ For those who downloaded the file, Unzip first then
 ```
 :three:
 ```
-cd q-malupet-na-todo or open folder and hold shift and open command/PowerShell window here then
+cd q-malupet-na-todo or 
+open folder and hold shift and open command/PowerShell window here then
 ```
 :four: 
 ```
