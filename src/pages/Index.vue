@@ -50,34 +50,42 @@
 <script>
 // 1st way using vue:
 // import Vue from 'vue'
-
+import io from 'socket.io-client'
 export default {
   name: 'PageIndex',
   data () {
     return {
       text: '',
-      lists: ['hi', 'hello'],
+      lists: [],
       index: null,
-      edit: false
+      edit: false,
+      socket: io('localhost:5000')
     }
+  },
+  mounted () {
+    this.socket.on('get_todos', (data) =>{
+      this.lists = data
+    })
   },
   methods: {
     addTodo() {
       // to add todo
-      this.lists.push(this.text)
-      this.text = ''
-      // after adding, goto lodi
-      this.$router.push('/lodi')
+      // this.lists.push(this.text)
+      // this.text = ''
+      // // after adding, goto lodi
+      // this.$router.push('/lodi')
+      this.socket.emit('add_todo', this.text)
     },
     delList(index){
-      this.lists.splice(index, 1)
+      // this.lists.splice(index, 1)
+      this.socket.emit('delete_todo', index)
     },
     editList(data, index){
       this.edit = true
       this.text = data
       this.index = index
       // string concatination
-      this.$router.push('/lodi/' +(index + 1))
+      // this.$router.push('/lodi/' +(index + 1))
       // string caret
       // this.$router.push(`/lodi/${index}`)
     },
@@ -88,7 +96,12 @@ export default {
     updateList(){
       // this.lists[index] = data (incorrect)
       // Vue.set(this.lists, this.index, this.text)
-      this.$set(this.lists, this.index, this.text)
+      // this.$set(this.lists, this.index, this.text)
+      let data = {
+        id: this.index,
+        text: this.text
+      }
+      this.socket.emit('update_todo', data)
       this.clear()
     }
   }

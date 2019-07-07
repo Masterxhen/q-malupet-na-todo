@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
-    "quasar": "^1.0.0"
+    "body-parser": "^1.19.0",
+    "quasar": "^1.0.0",
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {
     "@quasar/app": "^1.0.0"
