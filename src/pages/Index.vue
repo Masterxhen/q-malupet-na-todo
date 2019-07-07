@@ -29,13 +29,13 @@
     >
       <q-card-section>
         <q-list bordered separator>
-          <q-item clickable v-ripple v-for="(list, index) in lists" :key="index">
-            <q-item-section>{{ index + 1 }} : {{list}}</q-item-section>
+          <q-item clickable v-ripple v-for="list in lists" :key="list.id">
+            <q-item-section>{{list.id}}:{{list.text}}</q-item-section>
             <q-item-section avatar>
-              <q-btn color="green" round @click="editList(list, index)" icon="edit" />
+              <q-btn color="green" round @click="editList(list.text, list.id)" icon="edit" />
             </q-item-section>
             <q-item-section avatar>
-              <q-btn color="red" round @click="delList(index)" icon="delete" />
+              <q-btn color="red" round @click="delList(list.id)" icon="delete" />
             </q-item-section>
           </q-item>
         </q-list>
@@ -50,7 +50,7 @@
 <script>
 // 1st way using vue:
 // import Vue from 'vue'
-import io from 'socket.io-client'
+// import io from 'socket.io-client'
 export default {
   name: 'PageIndex',
   data () {
@@ -58,14 +58,14 @@ export default {
       text: '',
       lists: [],
       index: null,
-      edit: false,
-      socket: io('localhost:5000')
+      edit: false
     }
   },
   mounted () {
-    this.socket.on('get_todos', (data) =>{
-      this.lists = data
-    })
+    // this.socket.on('get_todos', (data) =>{
+    //   this.lists = data
+    // })
+    this.$bind('lists', this.$db.collection('todos'))
   },
   methods: {
     addTodo() {
@@ -74,11 +74,28 @@ export default {
       // this.text = ''
       // // after adding, goto lodi
       // this.$router.push('/lodi')
-      this.socket.emit('add_todo', this.text)
+      // this.socket.emit('add_todo', this.text)
+      if (this.text > 0) {
+        this.$db.collection("todos").add({
+          text: this.text
+        }).then(() => {
+          this.text = ''
+        })
+      } else {
+        alert("di pwede number")
+      }
+      // custom id
+      // this.$db.collection("todos").doc('User101').set({
+      //   text: this.text
+      // }).then(() => {
+      //   this.text = ''
+      // })
+
     },
     delList(index){
       // this.lists.splice(index, 1)
-      this.socket.emit('delete_todo', index)
+      // this.socket.emit('delete_todo', index)
+      this.$db.collection("todos").doc(index).delete()
     },
     editList(data, index){
       this.edit = true
@@ -101,7 +118,12 @@ export default {
         id: this.index,
         text: this.text
       }
-      this.socket.emit('update_todo', data)
+      // this.socket.emit('update_todo', data)
+      this.$db.collection("todos").doc(this.index).update({
+        text: this.text
+      }).then(() => {
+        this.text = ''
+      })
       this.clear()
     }
   }
