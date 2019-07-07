@@ -18,7 +18,20 @@ For those who downloaded the file, Unzip first
 cd q-malupet-na-todo-master
 or open folder and hold shift and open command/PowerShell window here
 ```
-:four: 
+:four:
+```
+Go to src/boot/firebase.js to set your database
+var firebaseConfig = {
+  apiKey: "<YOUR-API-KEY>",
+  authDomain: "<YOUR-AUTH-DOMAIN>",
+  databaseURL: "<YOUR-DATABASE-URl",
+  projectId: "<YOUR-PROJECT-ID>",
+  storageBucket: "<YOUR-STORAGE-BUCKET>",
+  messagingSenderId: "<YOUR-MESSAGING-SENDER-ID>",
+  appId: "<YOUR-APP-ID>"
+}
+```
+:five: 
 ```
 npm install
 ```
