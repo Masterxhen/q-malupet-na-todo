@@ -20,6 +20,11 @@ or open folder and hold shift and open command/PowerShell window here
 ```
 :four:
 ```
+Configure your database from the firebase's console site (you have to login)
+then find this configuration upon creating or from the settings of your firebase project
+```
+![image](https://user-images.githubusercontent.com/30729644/60824370-104efd80-a1dc-11e9-99b0-4aa022b3f0df.png)
+```
 Go to src/boot/firebase.js to set your database
 var firebaseConfig = {
   apiKey: "<YOUR-API-KEY>",
